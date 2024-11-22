@@ -156,17 +156,19 @@ int main() {
 			return -1;
 		}
 
-		// Check if there was an error with the request
-		if(response_msg.request_error) {
-			print_with_color("Bad request: ", RED);
-			print_with_color(response_msg.error_msg, RED);
-			puts("");
-		}
-		else {
-			// Display the generated password
-			print_with_color("Password generated: ", GREEN);
-			print_with_color(response_msg.password, GREEN);
-			printf("\n\n");
+		if(response_msg.keep_going){
+			// Check if there was an error with the request
+			if(response_msg.request_error) {
+				print_with_color("Bad request: ", RED);
+				print_with_color(response_msg.error_msg, RED);
+				puts("");
+			}
+			else {
+				// Display the generated password
+				print_with_color("Password generated: ", GREEN);
+				print_with_color(response_msg.password, GREEN);
+				printf("\n\n");
+			}
 		}
 
 	} while(response_msg.keep_going); /**< Continue until the server indicates to stop */
