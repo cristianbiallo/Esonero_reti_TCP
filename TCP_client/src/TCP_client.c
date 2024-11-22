@@ -125,7 +125,6 @@ int main() {
 
         // Check if only the type is entered (no length)
         if (arguments == 1) {
-        	print_with_color("(The length is absent, a default value is used: 8)\n", CYAN);
             strcpy(password_msg.length, "8");  // Default value if the length is absent
         } else if (arguments != 2) {
             // If the input is not valid, report the issue
@@ -157,6 +156,9 @@ int main() {
 		}
 
 		if(response_msg.keep_going){
+			if (arguments == 1) {
+				print_with_color("(The length is absent, a default value is used: 8)\n", CYAN);
+			}
 			// Check if there was an error with the request
 			if(response_msg.request_error) {
 				print_with_color("Bad request: ", RED);
@@ -170,6 +172,7 @@ int main() {
 				printf("\n\n");
 			}
 		}
+
 
 	} while(response_msg.keep_going); /**< Continue until the server indicates to stop */
 
